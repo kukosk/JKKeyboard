@@ -45,7 +45,10 @@
 
 - (CGFloat)keyboardIntersectionInView
 {
-	return self.bounds.size.height - self.keyboardFrameInView.origin.y;
+	CGFloat keyboardIntersectionInView = self.bounds.size.height - self.keyboardFrameInView.origin.y;
+	keyboardIntersectionInView = MAX(0.0, keyboardIntersectionInView);
+	
+	return keyboardIntersectionInView;
 }
 
 - (UIResponder *)firstResponder
