@@ -24,7 +24,7 @@
 		92CF41E618A7F5DB0018E47A /* UIScrollView+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E218A7F5DB0018E47A /* UIScrollView+JKKeyboard.m */; };
 		92CF41E718A7F5DB0018E47A /* UIView+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */; };
 		92CF41EA18A8096D0018E47A /* UIViewController+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E918A8096D0018E47A /* UIViewController+JKKeyboard.m */; };
-		92CF41ED18A80F720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */; };
+		92CF420218A967720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF420118A967720018E47A /* NSObject+JKRuntimeAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +65,8 @@
 		92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+JKKeyboard.m"; path = "JKKeyboardDemo/JKKeyboard/UIView+JKKeyboard.m"; sourceTree = SOURCE_ROOT; };
 		92CF41E818A8096D0018E47A /* UIViewController+JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JKKeyboard.h"; path = "JKKeyboardDemo/JKKeyboard/UIViewController+JKKeyboard.h"; sourceTree = SOURCE_ROOT; };
 		92CF41E918A8096D0018E47A /* UIViewController+JKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JKKeyboard.m"; path = "JKKeyboardDemo/JKKeyboard/UIViewController+JKKeyboard.m"; sourceTree = SOURCE_ROOT; };
-		92CF41EB18A80F720018E47A /* NSObject+JKRuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JKRuntimeAdditions.h"; sourceTree = SOURCE_ROOT; };
-		92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKRuntimeAdditions.m"; sourceTree = SOURCE_ROOT; };
+		92CF420018A967720018E47A /* NSObject+JKRuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+JKRuntimeAdditions.h"; path = "JKKeyboardDemo/JKKeyboard/NSObject+JKRuntimeAdditions.h"; sourceTree = SOURCE_ROOT; };
+		92CF420118A967720018E47A /* NSObject+JKRuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+JKRuntimeAdditions.m"; path = "JKKeyboardDemo/JKKeyboard/NSObject+JKRuntimeAdditions.m"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +180,8 @@
 				92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */,
 				92CF41E118A7F5DB0018E47A /* UIScrollView+JKKeyboard.h */,
 				92CF41E218A7F5DB0018E47A /* UIScrollView+JKKeyboard.m */,
-				92CF41EB18A80F720018E47A /* NSObject+JKRuntimeAdditions.h */,
-				92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */,
+				92CF420018A967720018E47A /* NSObject+JKRuntimeAdditions.h */,
+				92CF420118A967720018E47A /* NSObject+JKRuntimeAdditions.m */,
 			);
 			name = JKKeyboard;
 			sourceTree = "<group>";
@@ -286,7 +286,7 @@
 				92062EE718A7F2B5006EE11D /* JKAppDelegate.m in Sources */,
 				92062EE818A7F2B5006EE11D /* JKViewController.m in Sources */,
 				92CF41E718A7F5DB0018E47A /* UIView+JKKeyboard.m in Sources */,
-				92CF41ED18A80F720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */,
+				92CF420218A967720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */,
 				92CF41E518A7F5DB0018E47A /* JKKeyboardObserver.m in Sources */,
 				92CF41E618A7F5DB0018E47A /* UIScrollView+JKKeyboard.m in Sources */,
 				92062EEF18A7F2FB006EE11D /* main.m in Sources */,
