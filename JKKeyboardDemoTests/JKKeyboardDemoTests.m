@@ -1,6 +1,6 @@
 //
-//  JKKeyboardObserverDemoTests.m
-//  JKKeyboardObserverDemoTests
+//  JKKeyboardDemoTests.m
+//  JKKeyboardDemoTests
 //
 //  Created by Jakub Kleň on 8.2.2014.
 //  Copyright (c) 2014 Jakub Kleň. All rights reserved.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface JKKeyboardObserverDemoTests : XCTestCase
+@interface JKKeyboardDemoTests : XCTestCase
 
 @end
 
-@implementation JKKeyboardObserverDemoTests
+@implementation JKKeyboardDemoTests
 
 - (void)setUp
 {

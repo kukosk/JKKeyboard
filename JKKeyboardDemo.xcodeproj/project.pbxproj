@@ -1,0 +1,504 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		92062EE718A7F2B5006EE11D /* JKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 92062EE318A7F2B5006EE11D /* JKAppDelegate.m */; };
+		92062EE818A7F2B5006EE11D /* JKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92062EE518A7F2B5006EE11D /* JKViewController.m */; };
+		92062EE918A7F2B5006EE11D /* JKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92062EE618A7F2B5006EE11D /* JKViewController.xib */; };
+		92062EEB18A7F2C6006EE11D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92062EEA18A7F2C6006EE11D /* Images.xcassets */; };
+		92062EEF18A7F2FB006EE11D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92062EEE18A7F2FB006EE11D /* main.m */; };
+		92062F0118A7F3C9006EE11D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92062EFF18A7F3C9006EE11D /* InfoPlist.strings */; };
+		92176D9818A68A7A0061594E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9718A68A7A0061594E /* Foundation.framework */; };
+		92176D9A18A68A7A0061594E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9918A68A7A0061594E /* CoreGraphics.framework */; };
+		92176D9C18A68A7A0061594E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9B18A68A7A0061594E /* UIKit.framework */; };
+		92176DBA18A68A7A0061594E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176DB918A68A7A0061594E /* XCTest.framework */; };
+		92176DBB18A68A7A0061594E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9718A68A7A0061594E /* Foundation.framework */; };
+		92176DBC18A68A7A0061594E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9B18A68A7A0061594E /* UIKit.framework */; };
+		92CF41DC18A7F53A0018E47A /* JKKeyboardDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92062EFB18A7F38A006EE11D /* JKKeyboardDemoTests.m */; };
+		92CF41E518A7F5DB0018E47A /* JKKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E018A7F5DB0018E47A /* JKKeyboardObserver.m */; };
+		92CF41E618A7F5DB0018E47A /* UIScrollView+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E218A7F5DB0018E47A /* UIScrollView+JKKeyboard.m */; };
+		92CF41E718A7F5DB0018E47A /* UIView+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */; };
+		92CF41EA18A8096D0018E47A /* UIViewController+JKKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41E918A8096D0018E47A /* UIViewController+JKKeyboard.m */; };
+		92CF41ED18A80F720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		92176DBD18A68A7A0061594E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 92176D8C18A68A7A0061594E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 92176D9318A68A7A0061594E;
+			remoteInfo = JKKeyboardObserverDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		92062EE218A7F2B5006EE11D /* JKAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKAppDelegate.h; path = JKKeyboardDemo/JKAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		92062EE318A7F2B5006EE11D /* JKAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKAppDelegate.m; path = JKKeyboardDemo/JKAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		92062EE418A7F2B5006EE11D /* JKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKViewController.h; path = JKKeyboardDemo/JKViewController.h; sourceTree = SOURCE_ROOT; };
+		92062EE518A7F2B5006EE11D /* JKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKViewController.m; path = JKKeyboardDemo/JKViewController.m; sourceTree = SOURCE_ROOT; };
+		92062EE618A7F2B5006EE11D /* JKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = JKViewController.xib; path = JKKeyboardDemo/JKViewController.xib; sourceTree = SOURCE_ROOT; };
+		92062EEA18A7F2C6006EE11D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = JKKeyboardDemo/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		92062EEC18A7F2E4006EE11D /* JKKeyboard-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JKKeyboard-Info.plist"; path = "JKKeyboardDemo/JKKeyboard-Info.plist"; sourceTree = SOURCE_ROOT; };
+		92062EEE18A7F2FB006EE11D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JKKeyboardDemo/main.m; sourceTree = SOURCE_ROOT; };
+		92062EF018A7F321006EE11D /* JKKeyboardDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JKKeyboardDemo-Prefix.pch"; path = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		92062EFB18A7F38A006EE11D /* JKKeyboardDemoTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKKeyboardDemoTests.m; path = JKKeyboardDemoTests/JKKeyboardDemoTests.m; sourceTree = SOURCE_ROOT; };
+		92062EFD18A7F39A006EE11D /* JKKeyboardDemoTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JKKeyboardDemoTests-Info.plist"; path = "JKKeyboardDemoTests/JKKeyboardDemoTests-Info.plist"; sourceTree = SOURCE_ROOT; };
+		92062F0018A7F3C9006EE11D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = JKKeyboardDemo/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		92176D9418A68A7A0061594E /* JKKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		92176D9718A68A7A0061594E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		92176D9918A68A7A0061594E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		92176D9B18A68A7A0061594E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		92176DB818A68A7A0061594E /* JKKeyboardDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JKKeyboardDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		92176DB918A68A7A0061594E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		92CF41DE18A7F5DB0018E47A /* JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKKeyboard.h; path = JKKeyboardDemo/JKKeyboard/JKKeyboard.h; sourceTree = SOURCE_ROOT; };
+		92CF41DF18A7F5DB0018E47A /* JKKeyboardObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKKeyboardObserver.h; path = JKKeyboardDemo/JKKeyboard/JKKeyboardObserver.h; sourceTree = SOURCE_ROOT; };
+		92CF41E018A7F5DB0018E47A /* JKKeyboardObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKKeyboardObserver.m; path = JKKeyboardDemo/JKKeyboard/JKKeyboardObserver.m; sourceTree = SOURCE_ROOT; };
+		92CF41E118A7F5DB0018E47A /* UIScrollView+JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+JKKeyboard.h"; path = "JKKeyboardDemo/JKKeyboard/UIScrollView+JKKeyboard.h"; sourceTree = SOURCE_ROOT; };
+		92CF41E218A7F5DB0018E47A /* UIScrollView+JKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+JKKeyboard.m"; path = "JKKeyboardDemo/JKKeyboard/UIScrollView+JKKeyboard.m"; sourceTree = SOURCE_ROOT; };
+		92CF41E318A7F5DB0018E47A /* UIView+JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+JKKeyboard.h"; path = "JKKeyboardDemo/JKKeyboard/UIView+JKKeyboard.h"; sourceTree = SOURCE_ROOT; };
+		92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+JKKeyboard.m"; path = "JKKeyboardDemo/JKKeyboard/UIView+JKKeyboard.m"; sourceTree = SOURCE_ROOT; };
+		92CF41E818A8096D0018E47A /* UIViewController+JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+JKKeyboard.h"; path = "JKKeyboardDemo/JKKeyboard/UIViewController+JKKeyboard.h"; sourceTree = SOURCE_ROOT; };
+		92CF41E918A8096D0018E47A /* UIViewController+JKKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+JKKeyboard.m"; path = "JKKeyboardDemo/JKKeyboard/UIViewController+JKKeyboard.m"; sourceTree = SOURCE_ROOT; };
+		92CF41EB18A80F720018E47A /* NSObject+JKRuntimeAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JKRuntimeAdditions.h"; sourceTree = SOURCE_ROOT; };
+		92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JKRuntimeAdditions.m"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		92176D9118A68A7A0061594E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92176D9A18A68A7A0061594E /* CoreGraphics.framework in Frameworks */,
+				92176D9C18A68A7A0061594E /* UIKit.framework in Frameworks */,
+				92176D9818A68A7A0061594E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92176DB518A68A7A0061594E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92176DBA18A68A7A0061594E /* XCTest.framework in Frameworks */,
+				92176DBC18A68A7A0061594E /* UIKit.framework in Frameworks */,
+				92176DBB18A68A7A0061594E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		92176D8B18A68A7A0061594E = {
+			isa = PBXGroup;
+			children = (
+				92176D9D18A68A7A0061594E /* JKKeyboardDemo */,
+				92176DBF18A68A7A0061594E /* JKKeyboardDemoTests */,
+				92176D9618A68A7A0061594E /* Frameworks */,
+				92176D9518A68A7A0061594E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		92176D9518A68A7A0061594E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				92176D9418A68A7A0061594E /* JKKeyboardDemo.app */,
+				92176DB818A68A7A0061594E /* JKKeyboardDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		92176D9618A68A7A0061594E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92176D9718A68A7A0061594E /* Foundation.framework */,
+				92176D9918A68A7A0061594E /* CoreGraphics.framework */,
+				92176D9B18A68A7A0061594E /* UIKit.framework */,
+				92176DB918A68A7A0061594E /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		92176D9D18A68A7A0061594E /* JKKeyboardDemo */ = {
+			isa = PBXGroup;
+			children = (
+				92176DD718A68E940061594E /* JKKeyboard */,
+				92062EE218A7F2B5006EE11D /* JKAppDelegate.h */,
+				92062EE318A7F2B5006EE11D /* JKAppDelegate.m */,
+				92062EE418A7F2B5006EE11D /* JKViewController.h */,
+				92062EE518A7F2B5006EE11D /* JKViewController.m */,
+				92062EE618A7F2B5006EE11D /* JKViewController.xib */,
+				92176D9E18A68A7A0061594E /* Supporting Files */,
+			);
+			name = JKKeyboardDemo;
+			path = JKKeyboardObserverDemo;
+			sourceTree = "<group>";
+		};
+		92176D9E18A68A7A0061594E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92062EEA18A7F2C6006EE11D /* Images.xcassets */,
+				92062EEC18A7F2E4006EE11D /* JKKeyboard-Info.plist */,
+				92062EEE18A7F2FB006EE11D /* main.m */,
+				92062EF018A7F321006EE11D /* JKKeyboardDemo-Prefix.pch */,
+				92062EFF18A7F3C9006EE11D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92176DBF18A68A7A0061594E /* JKKeyboardDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				92062EFB18A7F38A006EE11D /* JKKeyboardDemoTests.m */,
+				92176DC018A68A7A0061594E /* Supporting Files */,
+			);
+			name = JKKeyboardDemoTests;
+			path = JKKeyboardObserverDemoTests;
+			sourceTree = "<group>";
+		};
+		92176DC018A68A7A0061594E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				92062EFD18A7F39A006EE11D /* JKKeyboardDemoTests-Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		92176DD718A68E940061594E /* JKKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				92CF41DE18A7F5DB0018E47A /* JKKeyboard.h */,
+				92CF41DF18A7F5DB0018E47A /* JKKeyboardObserver.h */,
+				92CF41E018A7F5DB0018E47A /* JKKeyboardObserver.m */,
+				92CF41E818A8096D0018E47A /* UIViewController+JKKeyboard.h */,
+				92CF41E918A8096D0018E47A /* UIViewController+JKKeyboard.m */,
+				92CF41E318A7F5DB0018E47A /* UIView+JKKeyboard.h */,
+				92CF41E418A7F5DB0018E47A /* UIView+JKKeyboard.m */,
+				92CF41E118A7F5DB0018E47A /* UIScrollView+JKKeyboard.h */,
+				92CF41E218A7F5DB0018E47A /* UIScrollView+JKKeyboard.m */,
+				92CF41EB18A80F720018E47A /* NSObject+JKRuntimeAdditions.h */,
+				92CF41EC18A80F720018E47A /* NSObject+JKRuntimeAdditions.m */,
+			);
+			name = JKKeyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		92176D9318A68A7A0061594E /* JKKeyboardDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92176DC918A68A7A0061594E /* Build configuration list for PBXNativeTarget "JKKeyboardDemo" */;
+			buildPhases = (
+				92176D9018A68A7A0061594E /* Sources */,
+				92176D9118A68A7A0061594E /* Frameworks */,
+				92176D9218A68A7A0061594E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JKKeyboardDemo;
+			productName = JKKeyboardObserverDemo;
+			productReference = 92176D9418A68A7A0061594E /* JKKeyboardDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		92176DB718A68A7A0061594E /* JKKeyboardDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 92176DCC18A68A7A0061594E /* Build configuration list for PBXNativeTarget "JKKeyboardDemoTests" */;
+			buildPhases = (
+				92176DB418A68A7A0061594E /* Sources */,
+				92176DB518A68A7A0061594E /* Frameworks */,
+				92176DB618A68A7A0061594E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				92176DBE18A68A7A0061594E /* PBXTargetDependency */,
+			);
+			name = JKKeyboardDemoTests;
+			productName = JKKeyboardObserverDemoTests;
+			productReference = 92176DB818A68A7A0061594E /* JKKeyboardDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		92176D8C18A68A7A0061594E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = JK;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Jakub Kleň";
+				TargetAttributes = {
+					92176DB718A68A7A0061594E = {
+						TestTargetID = 92176D9318A68A7A0061594E;
+					};
+				};
+			};
+			buildConfigurationList = 92176D8F18A68A7A0061594E /* Build configuration list for PBXProject "JKKeyboardDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 92176D8B18A68A7A0061594E;
+			productRefGroup = 92176D9518A68A7A0061594E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				92176D9318A68A7A0061594E /* JKKeyboardDemo */,
+				92176DB718A68A7A0061594E /* JKKeyboardDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		92176D9218A68A7A0061594E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92062EEB18A7F2C6006EE11D /* Images.xcassets in Resources */,
+				92062EE918A7F2B5006EE11D /* JKViewController.xib in Resources */,
+				92062F0118A7F3C9006EE11D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92176DB618A68A7A0061594E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		92176D9018A68A7A0061594E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92062EE718A7F2B5006EE11D /* JKAppDelegate.m in Sources */,
+				92062EE818A7F2B5006EE11D /* JKViewController.m in Sources */,
+				92CF41E718A7F5DB0018E47A /* UIView+JKKeyboard.m in Sources */,
+				92CF41ED18A80F720018E47A /* NSObject+JKRuntimeAdditions.m in Sources */,
+				92CF41E518A7F5DB0018E47A /* JKKeyboardObserver.m in Sources */,
+				92CF41E618A7F5DB0018E47A /* UIScrollView+JKKeyboard.m in Sources */,
+				92062EEF18A7F2FB006EE11D /* main.m in Sources */,
+				92CF41EA18A8096D0018E47A /* UIViewController+JKKeyboard.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		92176DB418A68A7A0061594E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92CF41DC18A7F53A0018E47A /* JKKeyboardDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		92176DBE18A68A7A0061594E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 92176D9318A68A7A0061594E /* JKKeyboardDemo */;
+			targetProxy = 92176DBD18A68A7A0061594E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		92062EFF18A7F3C9006EE11D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92062F0018A7F3C9006EE11D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		92176DC718A68A7A0061594E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		92176DC818A68A7A0061594E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		92176DCA18A68A7A0061594E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/JKKeyboardDemo/JKKeyboard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = JKKeyboardDemo;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		92176DCB18A68A7A0061594E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/JKKeyboardDemo/JKKeyboard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PRODUCT_NAME = JKKeyboardDemo;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		92176DCD18A68A7A0061594E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKKeyboardDemo.app/JKKeyboardDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "JKKeyboardDemoTests/JKKeyboardDemoTests-Info.plist";
+				PRODUCT_NAME = JKKeyboardDemoTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		92176DCE18A68A7A0061594E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/JKKeyboardDemo.app/JKKeyboardDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch";
+				INFOPLIST_FILE = "JKKeyboardDemoTests/JKKeyboardDemoTests-Info.plist";
+				PRODUCT_NAME = JKKeyboardDemoTests;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		92176D8F18A68A7A0061594E /* Build configuration list for PBXProject "JKKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92176DC718A68A7A0061594E /* Debug */,
+				92176DC818A68A7A0061594E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92176DC918A68A7A0061594E /* Build configuration list for PBXNativeTarget "JKKeyboardDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92176DCA18A68A7A0061594E /* Debug */,
+				92176DCB18A68A7A0061594E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		92176DCC18A68A7A0061594E /* Build configuration list for PBXNativeTarget "JKKeyboardDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92176DCD18A68A7A0061594E /* Debug */,
+				92176DCE18A68A7A0061594E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 92176D8C18A68A7A0061594E /* Project object */;
+}
