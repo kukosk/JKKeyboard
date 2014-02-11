@@ -8,7 +8,7 @@
 
 #import "UIScrollView+JKKeyboard.h"
 #import "UIView+JKKeyboard.h"
-#import "NSObject+JKRuntimeAdditions.h"
+#import "JRSwizzle.h"
 #import <objc/message.h>
 
 
@@ -18,7 +18,7 @@
 
 + (void)load
 {
-	[self swizzle:NSSelectorFromString(@"dealloc") with:@selector(dealloc_UIScrollView_JKKeyboard)];
+	[self jr_swizzleMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(dealloc_UIScrollView_JKKeyboard) error:nil];
 }
 
 - (void)dealloc_UIScrollView_JKKeyboard

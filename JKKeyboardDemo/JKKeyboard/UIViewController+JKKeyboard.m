@@ -9,7 +9,7 @@
 #import "UIViewController+JKKeyboard.h"
 #import "JKKeyboardObserver.h"
 #import "UIView+JKKeyboard.h"
-#import "NSObject+JKRuntimeAdditions.h"
+#import "JRSwizzle.h"
 #import <objc/message.h>
 
 
@@ -27,13 +27,13 @@
 
 + (void)load
 {
-	[self swizzle:@selector(viewDidLoad) with:@selector(viewDidLoad_UIViewController_JKKeyboard)];
-	[self swizzle:@selector(viewWillAppear:) with:@selector(viewWillAppear_UIViewController_JKKeyboard:)];
-	[self swizzle:@selector(viewDidAppear:) with:@selector(viewDidAppear_UIViewController_JKKeyboard:)];
-	[self swizzle:@selector(viewWillLayoutSubviews) with:@selector(viewWillLayoutSubviews_UIViewController_JKKeyboard)];
-	[self swizzle:@selector(viewWillDisappear:) with:@selector(viewWillDisappear_UIViewController_JKKeyboard:)];
-	[self swizzle:@selector(didRotateFromInterfaceOrientation:) with:@selector(didRotateFromInterfaceOrientation_UIViewController_JKKeyboard:)];
-	[self swizzle:NSSelectorFromString(@"dealloc") with:@selector(dealloc_UIViewController_JKKeyboard)];
+	[self jr_swizzleMethod:@selector(viewDidLoad) withMethod:@selector(viewDidLoad_UIViewController_JKKeyboard) error:nil];
+	[self jr_swizzleMethod:@selector(viewWillAppear:) withMethod:@selector(viewWillAppear_UIViewController_JKKeyboard:) error:nil];
+	[self jr_swizzleMethod:@selector(viewDidAppear:) withMethod:@selector(viewDidAppear_UIViewController_JKKeyboard:) error:nil];
+	[self jr_swizzleMethod:@selector(viewWillLayoutSubviews) withMethod:@selector(viewWillLayoutSubviews_UIViewController_JKKeyboard) error:nil];
+	[self jr_swizzleMethod:@selector(viewWillDisappear:) withMethod:@selector(viewWillDisappear_UIViewController_JKKeyboard:) error:nil];
+	[self jr_swizzleMethod:@selector(didRotateFromInterfaceOrientation:) withMethod:@selector(didRotateFromInterfaceOrientation_UIViewController_JKKeyboard:) error:nil];
+	[self jr_swizzleMethod:NSSelectorFromString(@"dealloc") withMethod:@selector(dealloc_UIViewController_JKKeyboard) error:nil];
 }
 
 - (void)viewDidLoad_UIViewController_JKKeyboard
