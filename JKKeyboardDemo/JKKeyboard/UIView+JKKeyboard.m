@@ -39,7 +39,6 @@
 - (CGRect)keyboardFrameInView
 {
 	JKKeyboardObserver *observer = [JKKeyboardObserver sharedObserver];
-	
 	return [self convertRect:observer.keyboardFrameInRootView fromView:observer.rootView];
 }
 

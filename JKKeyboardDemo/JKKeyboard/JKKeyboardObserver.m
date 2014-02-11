@@ -102,7 +102,8 @@ static JKKeyboardObserver *sharedObserver;
 
 - (UIView *)rootView
 {
-	return [[[[[UIApplication sharedApplication] delegate] window] rootViewController] view];
+	UIWindow *appWindow = [[[UIApplication sharedApplication] delegate] window];
+	return (appWindow.subviews > 0) ? appWindow.subviews[0] : appWindow.rootViewController.view;
 }
 
 - (void)setKeyboardFrameInRootView:(CGRect)keyboardFrameInRootView
