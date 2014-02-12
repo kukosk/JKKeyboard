@@ -44,10 +44,6 @@ if(self.scrollView.isScrolledToBottom)
 
 in your text field's textFieldShouldBeginEditing: delegate callback, and your scroll view will do exactly what you'd expect.
 
-## Known issues
-
-There's a minor issue in the animation of the bottom VC after interactively dismissing a VC with opened keyboard (don't yet know why).
-
 # Contact
 
 You can contact me via my web @ [www.kukosk.com](http://www.kukosk.com/) and follow me on twitter [@kukosk](https://twitter.com/kukosk/).

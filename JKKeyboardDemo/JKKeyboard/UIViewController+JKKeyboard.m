@@ -47,6 +47,13 @@
 {
 	[self viewWillAppear_UIViewController_JKKeyboard:animated];
 	
+	if([self respondsToSelector:@selector(transitionCoordinator)] && self.transitionCoordinator)
+	{
+		//prevents animation glitches in .view
+		//seems like apple is doing some magic under the hood, resetting the frames of the animated views somehow (affecting our ones)
+		[self.transitionCoordinator animateAlongsideTransitionInView:self.view animation:^(id<UIViewControllerTransitionCoordinatorContext> context){ } completion:nil];
+	}
+	
 	self.isFirstViewWillLayoutSubviewsSinceAppearance = YES;
 }
 
