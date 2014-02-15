@@ -7,6 +7,7 @@
 //
 
 #import "UIScrollView+JKKeyboard.h"
+#import "JKKeyboardObserver.h"
 #import "UIView+JKKeyboard.h"
 #import "JRSwizzle.h"
 #import <objc/message.h>
@@ -81,7 +82,7 @@
 
 - (void)scrollToTopAnimated:(BOOL)animated
 {
-	if(![self isScrolledToTop])
+	if(!self.isScrolledToTop)
 	{
 		[self setContentOffset:self.topOffset animated:animated];
 	}
@@ -89,7 +90,7 @@
 
 - (void)scrollToBottomAnimated:(BOOL)animated
 {
-	if(![self isScrolledToBottom])
+	if(!self.isScrolledToBottom)
 	{
 		[self setContentOffset:self.bottomOffset animated:animated];
 	}
@@ -99,12 +100,12 @@
 
 - (void)addObservers_UIScrollView_JKKeyboard
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow_UIScrollView_JKKeyboard:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow_UIScrollView_JKKeyboard:) name:JKKeyboardWillShowNotification object:nil];
 }
 
 - (void)removeObservers_UIScrollView_JKKeyboard
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:JKKeyboardWillShowNotification object:nil];
 }
 
 - (void)keyboardWillShow_UIScrollView_JKKeyboard:(NSNotification *)notification
@@ -113,14 +114,10 @@
 	{
 		self.shouldScrollToBottomOnNextKeyboardWillShow = NO;
 		
-		//in some weird circumstances, the animation was not actually being animated without this
-		[[NSOperationQueue mainQueue] addOperationWithBlock:^
-		 {
-			 [UIView animateWithKeyboardNotification:notification animations:^
-			 {
-				[self scrollToBottomAnimated:NO];
-			 }];
-		 }];
+		[UIView animateWithKeyboardNotification:notification animations:^
+		{
+			[self scrollToBottomAnimated:NO];
+		}];
 	}
 }
 

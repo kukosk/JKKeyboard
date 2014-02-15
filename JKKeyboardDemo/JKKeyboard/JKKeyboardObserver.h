@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
+extern NSString *const JKKeyboardWillShowNotification;
+extern NSString *const JKKeyboardDidShowNotification;
+extern NSString *const JKKeyboardWillChangeFrameNotification;
+extern NSString *const JKKeyboardDidChangeFrameNotification;
+extern NSString *const JKKeyboardWillHideNotification;
+extern NSString *const JKKeyboardDidHideNotification;
+
 extern NSString *const JKKeyboardObserverKeyboardMoveNotification;
 
 

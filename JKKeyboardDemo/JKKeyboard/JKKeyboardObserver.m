@@ -12,6 +12,13 @@
 
 static int KVOJKKeyboardObserverKeyboardFrame;
 
+NSString *const JKKeyboardWillShowNotification = @"JKKeyboardWillShowNotification";
+NSString *const JKKeyboardDidShowNotification = @"JKKeyboardDidShowNotification";
+NSString *const JKKeyboardWillChangeFrameNotification = @"JKKeyboardWillChangeFrameNotification";
+NSString *const JKKeyboardDidChangeFrameNotification = @"JKKeyboardDidChangeFrameNotification";
+NSString *const JKKeyboardWillHideNotification = @"JKKeyboardWillHideNotification";
+NSString *const JKKeyboardDidHideNotification = @"JKKeyboardDidHideNotification";
+
 NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserverKeyboardMoveNotification";
 
 static JKKeyboardObserver *sharedObserver;
@@ -213,6 +220,8 @@ static JKKeyboardObserver *sharedObserver;
 		 {
 			 self.keyboardFrameInRootView = endFrame;
 		 }];
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardWillShowNotification object:notification.object userInfo:notification.userInfo];
 	}
 }
 
@@ -226,12 +235,16 @@ static JKKeyboardObserver *sharedObserver;
 		[self updateKeyboardActiveViewWithReassign];
 		
 		self.isShowingKeyboard = NO;
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardDidShowNotification object:notification.object userInfo:notification.userInfo];
 	}
 }
 
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
 	self.willChangeFrameCalledTimes++;
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardWillChangeFrameNotification object:notification.object userInfo:notification.userInfo];
 }
 
 - (void)keyboardDidChangeFrame:(NSNotification *)notification
@@ -250,6 +263,8 @@ static JKKeyboardObserver *sharedObserver;
 			 self.keyboardFrameInRootView = endFrame;
 		 }];
 	}
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardDidChangeFrameNotification object:notification.object userInfo:notification.userInfo];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
@@ -268,6 +283,8 @@ static JKKeyboardObserver *sharedObserver;
 				 self.keyboardFrameInRootView = endFrame;
 			 }];
 		}
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardWillHideNotification object:notification.object userInfo:notification.userInfo];
 	}
 }
 
@@ -277,6 +294,8 @@ static JKKeyboardObserver *sharedObserver;
 	{
 		self.isKeyboardVisible = NO;
 		self.isHidingKeyboard = NO;
+		
+		[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardDidHideNotification object:notification.object userInfo:notification.userInfo];
 	}
 }
 
