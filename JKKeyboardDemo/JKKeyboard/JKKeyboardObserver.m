@@ -155,7 +155,9 @@ static JKKeyboardObserver *sharedObserver;
     
     if(!self.keyboardActiveView)
 	{
+		self.isObserving = NO;
         [self.rootView reassignFirstResponder];
+		self.isObserving = YES;
     }
 }
 
