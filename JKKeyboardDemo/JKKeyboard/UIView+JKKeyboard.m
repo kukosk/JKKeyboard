@@ -70,17 +70,4 @@
     return nil;
 }
 
-#pragma mark Methods
-
-- (void)reassignFirstResponder
-{
-    UIResponder *inputView = self.firstResponder;
-	
-    if(inputView)
-	{
-		[inputView resignFirstResponder];
-		[inputView becomeFirstResponder];
-    }
-}
-
 @end

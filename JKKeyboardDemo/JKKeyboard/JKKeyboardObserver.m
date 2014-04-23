@@ -30,7 +30,6 @@ static JKKeyboardObserver *sharedObserver;
 @property (assign, nonatomic) NSInteger willChangeFrameCalledTimes;
 
 @property (readwrite, assign, nonatomic) CGRect keyboardFrameInRootView;
-@property (strong, nonatomic) UIResponder *keyboardActiveInput;
 @property (strong, nonatomic) UIView *keyboardActiveView;
 
 @end
@@ -73,7 +72,6 @@ static JKKeyboardObserver *sharedObserver;
 		CGFloat keyboardY = MAX(rootViewSize.width, rootViewSize.height);
 		_keyboardFrameInRootView = CGRectMake(0.0, keyboardY, 0.0, 0.0);
 		
-		self.keyboardActiveInput = self.rootView.firstResponder;
 		self.didFrameHideKeyboard = YES;
 		self.isObserving = YES;
 	}
@@ -124,17 +122,6 @@ static JKKeyboardObserver *sharedObserver;
 	}
 }
 
-- (void)setKeyboardActiveInput:(UIResponder *)keyboardActiveInput
-{
-	UIResponder *oldKeyboardActiveInput = _keyboardActiveInput;
-	_keyboardActiveInput = keyboardActiveInput;
-	
-	if(oldKeyboardActiveInput != self.keyboardActiveInput)
-	{
-		[self updateKeyboardActiveViewWithReassign];
-	}
-}
-
 - (void)setKeyboardActiveView:(UIView *)keyboardActiveView
 {
 	id oldKeyboardActiveView = _keyboardActiveView;
@@ -156,15 +143,21 @@ static JKKeyboardObserver *sharedObserver;
 
 #pragma mark Methods
 
-- (void)updateKeyboardActiveViewWithReassign
+- (void)updateKeyboardActiveView
 {
-	self.keyboardActiveView = self.keyboardActiveInput.inputAccessoryView.superview;
-    
     if(!self.keyboardActiveView)
-	{
-		self.isObserving = NO;
-        [self.rootView reassignFirstResponder];
-		self.isObserving = YES;
+    {
+        for(UIWindow *window in [[UIApplication sharedApplication] windows])
+        {
+            for(UIView *possibleKeyboard in window.subviews)
+            {
+                if([[possibleKeyboard description] hasPrefix:@"<UIPeripheralHostView"])
+                {
+                    self.keyboardActiveView = possibleKeyboard;
+                    break;
+                }
+            }
+        }
     }
 }
 
@@ -232,7 +225,7 @@ static JKKeyboardObserver *sharedObserver;
 		self.isKeyboardVisible = YES;
 		self.didFrameHideKeyboard = NO;
 		
-		[self updateKeyboardActiveViewWithReassign];
+        [self updateKeyboardActiveView];
 		
 		self.isShowingKeyboard = NO;
 		
@@ -299,27 +292,6 @@ static JKKeyboardObserver *sharedObserver;
 	}
 }
 
-- (void)responderDidBecomeActive:(NSNotification *)notification
-{
-	UIResponder *keyboardActiveInput = notification.object;
-	
-    if(!keyboardActiveInput.inputAccessoryView)
-	{
-        UITextField *textField = (UITextField *)keyboardActiveInput;
-		
-        if([textField respondsToSelector:@selector(setInputAccessoryView:)])
-		{
-            UIView *nullView = [[UIView alloc] initWithFrame:CGRectZero];
-            nullView.backgroundColor = [UIColor clearColor];
-            textField.inputAccessoryView = nullView;
-        }
-		
-		keyboardActiveInput = (UIResponder *)textField;
-    }
-	
-	self.keyboardActiveInput = keyboardActiveInput;
-}
-
 - (void)addObservers_JKKeyboardObserver
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -330,8 +302,6 @@ static JKKeyboardObserver *sharedObserver;
 	[notificationCenter addObserver:self selector:@selector(keyboardDidChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
 	[notificationCenter addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 	[notificationCenter addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-	[notificationCenter addObserver:self selector:@selector(responderDidBecomeActive:) name:UITextFieldTextDidBeginEditingNotification object:nil];
-    [notificationCenter addObserver:self selector:@selector(responderDidBecomeActive:) name:UITextViewTextDidBeginEditingNotification object:nil];
 }
 
 - (void)removeObservers_JKKeyboardObserver
@@ -344,8 +314,6 @@ static JKKeyboardObserver *sharedObserver;
 	[notificationCenter removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
 	[notificationCenter removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 	[notificationCenter removeObserver:self name:UIKeyboardDidHideNotification object:nil];
-	[notificationCenter removeObserver:self name:UITextFieldTextDidBeginEditingNotification object:nil];
-    [notificationCenter removeObserver:self name:UITextViewTextDidBeginEditingNotification object:nil];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

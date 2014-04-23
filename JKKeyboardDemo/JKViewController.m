@@ -10,7 +10,7 @@
 #import "JKKeyboard.h"
 
 
-@interface JKViewController () <UITextFieldDelegate>
+@interface JKViewController () <UITextFieldDelegate, UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *replyView;
@@ -28,7 +28,7 @@
 	[super viewDidLoad];
 	
 	NSUInteger posInNavController = [self posInNavController];
-	self.title = [NSString stringWithFormat:@"ViewController %i", posInNavController];
+	self.title = [NSString stringWithFormat:@"ViewController %ld", (long)posInNavController];
 	
 	__weak typeof(self) weakSelf = self;
 	
@@ -36,7 +36,7 @@
 	{
 		typeof(self) self = weakSelf;
 		
-		self.replyViewBottomSpaceLayoutConstraint.constant = self.view.keyboardIntersectionInView;
+        self.replyViewBottomSpaceLayoutConstraint.constant = self.view.keyboardIntersectionInView;
 		
 		if(shouldLayoutIfNeeded)
 		{
@@ -83,9 +83,19 @@
 	[self.view.window endEditing:NO];
 }
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    if(self.scrollView.isScrolledToBottom)
+	{
+		self.scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
+	}
+	
+	return YES;
+}
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-	if(self.scrollView.isScrolledToBottom)
+    if(self.scrollView.isScrolledToBottom)
 	{
 		self.scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
 	}

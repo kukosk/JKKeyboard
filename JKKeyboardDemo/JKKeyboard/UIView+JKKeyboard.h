@@ -18,6 +18,5 @@
 
 
 + (void)animateWithKeyboardNotification:(NSNotification *)notification animations:(void (^)(void))animations;
-- (void)reassignFirstResponder;
 
 @end
