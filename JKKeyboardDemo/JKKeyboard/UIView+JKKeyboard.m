@@ -16,14 +16,28 @@
 
 + (void)animateWithKeyboardNotification:(NSNotification *)notification animations:(void (^)(void))animations
 {
-	if(animations)
-	{
-		CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
-		UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-		
-		duration = MAX(0.15, duration);
-		
-		[UIView beginAnimations:nil context:NULL];
+    UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    [self animateWithKeyboardNotification:notification curve:curve animations:animations];
+}
+
++ (void)animateWithKeyboardNotification:(NSNotification *)notification curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations
+{
+    CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    
+    if(duration <= 0.0)
+    {
+        duration = 0.15;
+    }
+    
+    [self animateWithKeyboardDuration:duration curve:curve animations:animations];
+}
+
++ (void)animateWithKeyboardDuration:(CGFloat)duration curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations
+{
+    if(animations)
+    {
+        [UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		[UIView setAnimationDuration:duration];
 		[UIView setAnimationCurve:curve];
@@ -31,7 +45,7 @@
 		animations();
 		
 		[UIView commitAnimations];
-	}
+    }
 }
 
 #pragma mark Properties

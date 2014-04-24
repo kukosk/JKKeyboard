@@ -26,7 +26,7 @@ static JKKeyboardObserver *sharedObserver;
 
 @interface JKKeyboardObserver ()
 
-@property (assign, nonatomic) BOOL isObserving, isKeyboardVisible, isShowingKeyboard, isHidingKeyboard, didFrameHideKeyboard, lastWillHideWasCausedByUserInteraction;
+@property (assign, nonatomic) BOOL isObserving, isKeyboardVisible, isShowingKeyboard, isHidingKeyboard, isInteractivelyHidingKeyboard, didFrameHideKeyboard, lastWillHideWasCausedByUserInteraction;
 @property (assign, nonatomic) NSInteger willChangeFrameCalledTimes;
 
 @property (readwrite, assign, nonatomic) CGRect keyboardFrameInRootView;
@@ -208,7 +208,7 @@ static JKKeyboardObserver *sharedObserver;
 		self.isShowingKeyboard = YES;
 		
 		CGRect endFrame = [self endFrameFromNotification:notification keyboardShouldBeVisible:YES];
-		
+        
 		[UIView animateWithKeyboardNotification:notification animations:^
 		 {
 			 self.keyboardFrameInRootView = endFrame;
@@ -268,10 +268,12 @@ static JKKeyboardObserver *sharedObserver;
 		
 		self.lastWillHideWasCausedByUserInteraction = [notification.userInfo[@"UIKeyboardFrameChangedByUserInteraction"] boolValue];
 		CGRect endFrame = [self endFrameFromNotification:notification keyboardShouldBeVisible:NO];
-		
+        //to fix an issue in reported value
+        UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue] - (NSInteger)self.isInteractivelyHidingKeyboard;
+        
 		if(!self.didFrameHideKeyboard && !self.lastWillHideWasCausedByUserInteraction)
 		{
-			[UIView animateWithKeyboardNotification:notification animations:^
+			[UIView animateWithKeyboardNotification:notification curve:curve animations:^
 			 {
 				 self.keyboardFrameInRootView = endFrame;
 			 }];
@@ -287,6 +289,7 @@ static JKKeyboardObserver *sharedObserver;
 	{
 		self.isKeyboardVisible = NO;
 		self.isHidingKeyboard = NO;
+        self.isInteractivelyHidingKeyboard = NO;
 		
 		[[NSNotificationCenter defaultCenter] postNotificationName:JKKeyboardDidHideNotification object:notification.object userInfo:notification.userInfo];
 	}
@@ -333,6 +336,7 @@ static JKKeyboardObserver *sharedObserver;
 		{
 			if(self.isKeyboardVisible && !self.isShowingKeyboard && !self.isHidingKeyboard)
 			{
+                self.isInteractivelyHidingKeyboard = YES;
 				CGFloat maxYPos = self.rootView.bounds.size.height;
 				
 				if(!self.didFrameHideKeyboard)

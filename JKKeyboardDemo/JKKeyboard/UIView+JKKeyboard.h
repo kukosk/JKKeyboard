@@ -18,5 +18,7 @@
 
 
 + (void)animateWithKeyboardNotification:(NSNotification *)notification animations:(void (^)(void))animations;
++ (void)animateWithKeyboardNotification:(NSNotification *)notification curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations;
++ (void)animateWithKeyboardDuration:(CGFloat)duration curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations;
 
 @end
