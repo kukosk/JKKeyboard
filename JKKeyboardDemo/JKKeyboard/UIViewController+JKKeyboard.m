@@ -188,7 +188,8 @@
 		CGFloat keyboardIntersectionInRootView = rootView.keyboardIntersectionInView;
 		CGFloat keyboardVisibility = (keyboardFrameInRootView.size.height > 0) ? keyboardIntersectionInRootView / keyboardFrameInRootView.size.height : 0.0;
 		BOOL rotatesInterfaceOrientation = self.interfaceOrientation != self.currentOrientation;
-		shouldLayoutIfNeeded = shouldLayoutIfNeeded && !rotatesInterfaceOrientation;
+        BOOL isActive = (self.view.window && (!self.navigationController || self == self.navigationController.visibleViewController));
+		shouldLayoutIfNeeded = shouldLayoutIfNeeded && !rotatesInterfaceOrientation && isActive;
 		
 		self.keyboardMoveBlock(keyboardFrameInRootView, keyboardIntersectionInRootView, keyboardVisibility, shouldLayoutIfNeeded);
 	}

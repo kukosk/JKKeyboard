@@ -28,6 +28,7 @@ static JKKeyboardObserver *sharedObserver;
 
 @property (assign, nonatomic) BOOL isObserving, isKeyboardVisible, isShowingKeyboard, isHidingKeyboard, isInteractivelyHidingKeyboard, didFrameHideKeyboard, lastWillHideWasCausedByUserInteraction;
 @property (assign, nonatomic) NSInteger willChangeFrameCalledTimes;
+@property (assign, nonatomic) CGRect lastKeyboardFrame;
 
 @property (readwrite, assign, nonatomic) CGRect keyboardFrameInRootView;
 @property (strong, nonatomic) UIView *keyboardActiveView;
@@ -124,7 +125,7 @@ static JKKeyboardObserver *sharedObserver;
 
 - (void)setKeyboardActiveView:(UIView *)keyboardActiveView
 {
-	id oldKeyboardActiveView = _keyboardActiveView;
+	UIView *oldKeyboardActiveView = _keyboardActiveView;
 	_keyboardActiveView = keyboardActiveView;
 	
 	if(oldKeyboardActiveView != self.keyboardActiveView)
@@ -132,11 +133,25 @@ static JKKeyboardObserver *sharedObserver;
 		if(oldKeyboardActiveView)
 		{
 			[oldKeyboardActiveView removeObserver:self forKeyPath:@"frame" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"frame" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"bounds" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"position" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"transform" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"zPosition" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"anchorPoint" context:&KVOJKKeyboardObserverKeyboardFrame];
+            [oldKeyboardActiveView.layer removeObserver:self forKeyPath:@"anchorPointZ" context:&KVOJKKeyboardObserverKeyboardFrame];
 		}
 		
 		if(self.keyboardActiveView)
 		{
-			[self.keyboardActiveView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"position" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+			[self.keyboardActiveView.layer addObserver:self forKeyPath:@"transform" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"zPosition" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"anchorPoint" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
+            [self.keyboardActiveView.layer addObserver:self forKeyPath:@"anchorPointZ" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:&KVOJKKeyboardObserverKeyboardFrame];
 		}
 	}
 }
@@ -147,13 +162,34 @@ static JKKeyboardObserver *sharedObserver;
 {
     if(!self.keyboardActiveView)
     {
-        for(UIWindow *window in [[UIApplication sharedApplication] windows])
+        NSArray *appWindows = [[UIApplication sharedApplication] windows];
+        
+        for(UIWindow *window in appWindows)
         {
-            for(UIView *possibleKeyboard in window.subviews)
+            NSArray *keyboardContainers = [window.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self isKindOfClass:%@", NSClassFromString(@"UIInputSetContainerView")]];
+            
+            if(keyboardContainers.count > 0)
             {
-                if([[possibleKeyboard description] hasPrefix:@"<UIPeripheralHostView"])
+                NSArray *keyboards = [[keyboardContainers[0] subviews] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self isKindOfClass:%@", NSClassFromString(@"UIInputSetHostView")]];
+                
+                if(keyboards.count > 0)
                 {
-                    self.keyboardActiveView = possibleKeyboard;
+                    self.keyboardActiveView = keyboards[0];
+                    break;
+                }
+            }
+        }
+        
+        //pre-iOS8 fallback
+        if(!self.keyboardActiveView)
+        {
+            for(UIWindow *window in appWindows)
+            {
+                NSArray *keyboards = [window.subviews filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self isKindOfClass:%@", NSClassFromString(@"UIPeripheralHostView")]];
+                
+                if(keyboards.count > 0)
+                {
+                    self.keyboardActiveView = keyboards[0];
                     break;
                 }
             }
@@ -323,29 +359,36 @@ static JKKeyboardObserver *sharedObserver;
 {
 	if(context == &KVOJKKeyboardObserverKeyboardFrame)
 	{
-		CGRect oldFrame = [change[NSKeyValueChangeOldKey] CGRectValue];
-		CGRect newFrame = [change[NSKeyValueChangeNewKey] CGRectValue];
-		
-		UIView *rootView = self.rootView;
-		UIView *keyboardWindow = self.keyboardActiveView.window;
-		
-		oldFrame = [keyboardWindow convertRect:oldFrame toView:rootView];
-		newFrame = [keyboardWindow convertRect:newFrame toView:rootView];
-		
-		if(!CGRectEqualToRect(oldFrame, newFrame) && !CGRectIsEmpty(newFrame))
-		{
-			if(self.isKeyboardVisible && !self.isShowingKeyboard && !self.isHidingKeyboard)
-			{
-                self.isInteractivelyHidingKeyboard = YES;
-				CGFloat maxYPos = self.rootView.bounds.size.height;
-				
-				if(!self.didFrameHideKeyboard)
-				{
-					self.keyboardFrameInRootView = newFrame;
-					self.didFrameHideKeyboard = (newFrame.origin.y >= maxYPos);
-				}
-			}
-		}
+        NSValue *oldValue = change[NSKeyValueChangeOldKey];
+        NSValue *newValue = change[NSKeyValueChangeNewKey];
+        BOOL valuesAreSame = (oldValue == newValue || [oldValue isEqual:newValue]);
+        
+        if(!valuesAreSame)
+        {
+            CGRect newFrame = self.keyboardActiveView.frame;
+            
+            if(!CGRectEqualToRect(newFrame, self.lastKeyboardFrame))
+            {
+                self.lastKeyboardFrame = newFrame;
+                
+                if(!CGRectIsEmpty(newFrame))
+                {
+                    if(self.isKeyboardVisible && !self.isShowingKeyboard && !self.isHidingKeyboard)
+                    {
+                        self.isInteractivelyHidingKeyboard = YES;
+                        
+                        if(!self.didFrameHideKeyboard)
+                        {
+                            CGRect newFrameInRootView = [self.keyboardActiveView.window convertRect:newFrame toView:self.rootView];
+                            CGFloat maxYPos = self.rootView.bounds.size.height;
+                            
+                            self.keyboardFrameInRootView = newFrameInRootView;
+                            self.didFrameHideKeyboard = (newFrameInRootView.origin.y >= maxYPos);
+                        }
+                    }
+                }
+            }
+        }
 	}
 	else
 	{

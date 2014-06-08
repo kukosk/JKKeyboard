@@ -49,7 +49,7 @@
 		//just logging
 		NSString *gapString = @"     ";
 		NSString *logGap = [@"" stringByPaddingToLength:(posInNavController * gapString.length) withString:gapString startingAtIndex:0];
-		NSLog(@"%@ INTERSECTION:%.1f       VISIBILITY:%.2f       ROOT: %@       VIEW:%@", logGap, self.view.keyboardIntersectionInView, keyboardVisibility, NSStringFromCGRect(keyboardFrameInRootView), NSStringFromCGRect(self.view.keyboardFrameInView));
+		NSLog(@"%@INTERSECTION:%6.1f    VISIBILITY:%.2f    ROOT: %@    VIEW:%@", logGap, self.view.keyboardIntersectionInView, keyboardVisibility, NSStringFromCGRect(keyboardFrameInRootView), NSStringFromCGRect(self.view.keyboardFrameInView));
 	};
 }
 
