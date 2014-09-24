@@ -16,7 +16,7 @@
 @interface UIViewController ()
 
 @property (readwrite, assign, nonatomic) UIInterfaceOrientation currentOrientation;
-@property (assign, nonatomic) BOOL isFirstViewWillLayoutSubviewsSinceAppearance, shouldCallKeyboardMoveBlock;
+@property (assign, nonatomic) BOOL canActivateKeyboardMoveBlock, shouldCallKeyboardMoveBlock;
 
 @end
 
@@ -54,7 +54,7 @@
 		[self.transitionCoordinator animateAlongsideTransitionInView:self.view animation:^(id<UIViewControllerTransitionCoordinatorContext> context){ } completion:nil];
 	}
 	
-	self.isFirstViewWillLayoutSubviewsSinceAppearance = YES;
+    self.canActivateKeyboardMoveBlock = YES;
 }
 
 - (void)viewDidAppear_UIViewController_JKKeyboard:(BOOL)animated
@@ -62,23 +62,23 @@
 	[self viewDidAppear_UIViewController_JKKeyboard:animated];
 	
 	[self layoutForCurrentOrientation_UIViewController_JKKeyboard];
+    
+    dispatch_async(dispatch_get_main_queue(), ^
+    {
+        [self activateKeyboardMoveBlock_UIViewController_JKKeyboard];
+    });
 }
 
 - (void)viewWillLayoutSubviews_UIViewController_JKKeyboard
 {
 	[self viewWillLayoutSubviews_UIViewController_JKKeyboard];
 	
-	if(self.isFirstViewWillLayoutSubviewsSinceAppearance)
-	{
-		self.isFirstViewWillLayoutSubviewsSinceAppearance = NO;
-		
-		self.shouldCallKeyboardMoveBlock = YES;
-		[self callKeyboardMoveBlockWithShouldLayoutIfNeeded:NO];
-	}
+    [self activateKeyboardMoveBlock_UIViewController_JKKeyboard];
 }
 
 - (void)viewWillDisappear_UIViewController_JKKeyboard:(BOOL)animated
 {
+    self.canActivateKeyboardMoveBlock = NO;
 	self.shouldCallKeyboardMoveBlock = NO;
 	
 	[self viewWillDisappear_UIViewController_JKKeyboard:animated];
@@ -155,14 +155,14 @@
 	}
 }
 
-- (BOOL)isFirstViewWillLayoutSubviewsSinceAppearance
+- (BOOL)canActivateKeyboardMoveBlock
 {
-	return [objc_getAssociatedObject(self, @selector(isFirstViewWillLayoutSubviewsSinceAppearance)) boolValue];
+    return [objc_getAssociatedObject(self, @selector(canActivateKeyboardMoveBlock)) boolValue];
 }
 
-- (void)setIsFirstViewWillLayoutSubviewsSinceAppearance:(BOOL)isFirstViewWillLayoutSubviewsSinceAppearance
+- (void)setCanActivateKeyboardMoveBlock:(BOOL)canActivateKeyboardMoveBlock
 {
-	objc_setAssociatedObject(self, @selector(isFirstViewWillLayoutSubviewsSinceAppearance), @(isFirstViewWillLayoutSubviewsSinceAppearance), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(canActivateKeyboardMoveBlock), @(canActivateKeyboardMoveBlock), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (BOOL)shouldCallKeyboardMoveBlock
@@ -193,6 +193,15 @@
 		
 		self.keyboardMoveBlock(keyboardFrameInRootView, keyboardIntersectionInRootView, keyboardVisibility, shouldLayoutIfNeeded);
 	}
+}
+
+- (void)activateKeyboardMoveBlock_UIViewController_JKKeyboard
+{
+    if(!self.shouldCallKeyboardMoveBlock && self.canActivateKeyboardMoveBlock)
+    {
+        self.shouldCallKeyboardMoveBlock = YES;
+        [self callKeyboardMoveBlockWithShouldLayoutIfNeeded:NO];
+    }
 }
 
 - (void)layoutForCurrentOrientation_UIViewController_JKKeyboard

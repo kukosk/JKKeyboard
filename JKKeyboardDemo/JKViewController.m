@@ -46,7 +46,7 @@
 		[self updateScrollViewContentInsets];
 		
 		
-		//just logging
+		// just logging
 		NSString *gapString = @"     ";
 		NSString *logGap = [@"" stringByPaddingToLength:(posInNavController * gapString.length) withString:gapString startingAtIndex:0];
 		NSLog(@"%@INTERSECTION:%6.1f    VISIBILITY:%.2f    ROOT: %@    VIEW:%@", logGap, self.view.keyboardIntersectionInView, keyboardVisibility, NSStringFromCGRect(keyboardFrameInRootView), NSStringFromCGRect(self.view.keyboardFrameInView));
@@ -63,7 +63,7 @@
 	self.scrollView.contentInset = newInsets;
 	self.scrollView.scrollIndicatorInsets = newInsets;
 	
-	//maybe think about tweaking contentInset only when we need, as it would prevent 'over'scrolling being dismissed when dismissing interactively
+	// maybe think about tweaking contentInset only when we need, as it would prevent 'over'scrolling being dismissed when dismissing interactively
 }
 
 - (NSUInteger)posInNavController

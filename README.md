@@ -14,16 +14,22 @@ A singleton class which gets initiated automatically, and observes the keyboard 
 
 ## UIViewController+JKKeyboard
 
-Implements the callback block, so you just call
+Implements the callback block as a property, so you just call...
 
 ``` objective-c
-self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded)
-{
-	//look @ the demo project view controller implementation file for more
+self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
+	// tweak everything you need
+	// look @ the demo project view controller implementation file for more
+	
+	if(shouldLayoutIfNeeded) {
+		[self.view layoutIfNeeded];
+	}
 };
 ```
 
-Note: The block gets called automatically in every first viewWillLayoutSubviews after viewWillAppear:
+...in viewDidLoad:, and you're done :)
+
+Note: The block doesn't get called after viewWillDisappear:, and starts again shortly after viewDidAppear: (calling it once to update your views, also for the first time).
 
 Deallocation and rollback is performed automatically for you when your view controller is about to get deallocated, although if you want to do it earlier, you just set the keyboardMoveBlock to nil;
 
@@ -33,16 +39,15 @@ Easily obtain the information you need. You can access the keyboard frame and in
 
 ## UIScrollView+JKKeyboard
 
-The main aim of this class is to simplify scrolling your scroll view to bottom when the keyboard is being shown. You're able to do something like
+The main aim of this class is to simplify scrolling your scroll views to bottom when the keyboard is being shown. You're able to do something like...
 
 ``` objective-c
-if(self.scrollView.isScrolledToBottom)
-{
-	self.scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
+if(scrollView.isScrolledToBottom) {
+	scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
 }
 ```
 
-in your text field's textFieldShouldBeginEditing: delegate callback, and your scroll view will do exactly what you'd expect.
+...in your text field's textFieldShouldBeginEditing: delegate callback, and your scroll view will do exactly what you'd expect.
 
 # Contact
 
