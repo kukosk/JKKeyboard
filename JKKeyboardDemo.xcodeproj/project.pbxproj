@@ -12,7 +12,6 @@
 		92062EE918A7F2B5006EE11D /* JKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92062EE618A7F2B5006EE11D /* JKViewController.xib */; };
 		92062EEB18A7F2C6006EE11D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92062EEA18A7F2C6006EE11D /* Images.xcassets */; };
 		92062EEF18A7F2FB006EE11D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92062EEE18A7F2FB006EE11D /* main.m */; };
-		92062F0118A7F3C9006EE11D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92062EFF18A7F3C9006EE11D /* InfoPlist.strings */; };
 		92176D9818A68A7A0061594E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9718A68A7A0061594E /* Foundation.framework */; };
 		92176D9A18A68A7A0061594E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9918A68A7A0061594E /* CoreGraphics.framework */; };
 		92176D9C18A68A7A0061594E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92176D9B18A68A7A0061594E /* UIKit.framework */; };
@@ -33,12 +32,10 @@
 		92062EEC18A7F2E4006EE11D /* JKKeyboard-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JKKeyboard-Info.plist"; path = "JKKeyboardDemo/JKKeyboard-Info.plist"; sourceTree = SOURCE_ROOT; };
 		92062EEE18A7F2FB006EE11D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = JKKeyboardDemo/main.m; sourceTree = SOURCE_ROOT; };
 		92062EF018A7F321006EE11D /* JKKeyboardDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JKKeyboardDemo-Prefix.pch"; path = "JKKeyboardDemo/JKKeyboardDemo-Prefix.pch"; sourceTree = SOURCE_ROOT; };
-		92062F0018A7F3C9006EE11D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = JKKeyboardDemo/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
 		92176D9418A68A7A0061594E /* JKKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JKKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92176D9718A68A7A0061594E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		92176D9918A68A7A0061594E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		92176D9B18A68A7A0061594E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		92176DB918A68A7A0061594E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		92CF41DE18A7F5DB0018E47A /* JKKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKKeyboard.h; path = JKKeyboardDemo/JKKeyboard/JKKeyboard.h; sourceTree = SOURCE_ROOT; };
 		92CF41DF18A7F5DB0018E47A /* JKKeyboardObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JKKeyboardObserver.h; path = JKKeyboardDemo/JKKeyboard/JKKeyboardObserver.h; sourceTree = SOURCE_ROOT; };
 		92CF41E018A7F5DB0018E47A /* JKKeyboardObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JKKeyboardObserver.m; path = JKKeyboardDemo/JKKeyboard/JKKeyboardObserver.m; sourceTree = SOURCE_ROOT; };
@@ -89,7 +86,6 @@
 				92176D9718A68A7A0061594E /* Foundation.framework */,
 				92176D9918A68A7A0061594E /* CoreGraphics.framework */,
 				92176D9B18A68A7A0061594E /* UIKit.framework */,
-				92176DB918A68A7A0061594E /* XCTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,7 +113,6 @@
 				92062EEC18A7F2E4006EE11D /* JKKeyboard-Info.plist */,
 				92062EEE18A7F2FB006EE11D /* main.m */,
 				92062EF018A7F321006EE11D /* JKKeyboardDemo-Prefix.pch */,
-				92062EFF18A7F3C9006EE11D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -210,7 +205,6 @@
 			files = (
 				92062EEB18A7F2C6006EE11D /* Images.xcassets in Resources */,
 				92062EE918A7F2B5006EE11D /* JKViewController.xib in Resources */,
-				92062F0118A7F3C9006EE11D /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,17 +227,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		92062EFF18A7F3C9006EE11D /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92062F0018A7F3C9006EE11D /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		92176DC718A68A7A0061594E /* Debug */ = {

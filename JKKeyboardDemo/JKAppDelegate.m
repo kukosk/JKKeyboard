@@ -21,24 +21,20 @@
 
 #pragma mark Lifecycle
 
-- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	[self.window makeKeyAndVisible];
 	
 	return YES;
 }
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;
 }
 
 #pragma mark Properties
 
-- (UIWindow *)window
-{
-	if(!_window)
-	{
+- (UIWindow *)window {
+	if(!_window) {
 		UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 		window.rootViewController = self.rootViewController;
 		
@@ -48,22 +44,17 @@
 	return _window;
 }
 
-- (UIViewController *)rootViewController
-{
-	if(!_rootViewController)
-	{
+- (UIViewController *)rootViewController {
+	if(!_rootViewController) {
 		UIViewController *vc = nil;
 		
-		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		{
+		if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
 			UISplitViewController *splitVC = [[UISplitViewController alloc] init];
 			splitVC.viewControllers = @[[[UINavigationController alloc] initWithRootViewController:[[JKViewController alloc] init]], [[UINavigationController alloc] initWithRootViewController:[[JKViewController alloc] init]]];
 			splitVC.delegate = self;
 			
 			vc = splitVC;
-		}
-		else
-		{
+		} else {
 			vc = [[UINavigationController alloc] initWithRootViewController:[[JKViewController  alloc] init]];
 		}
 		
@@ -75,8 +66,7 @@
 
 #pragma mark Methods
 
-- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
-{
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
 	return NO;
 }
 

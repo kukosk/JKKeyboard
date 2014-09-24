@@ -23,8 +23,7 @@
 
 #pragma mark Lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	NSUInteger posInNavController = [self posInNavController];
@@ -32,14 +31,12 @@
 	
 	__weak typeof(self) weakSelf = self;
 	
-	self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded)
-	{
+	self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
 		typeof(self) self = weakSelf;
 		
         self.replyViewBottomSpaceLayoutConstraint.constant = self.view.keyboardIntersectionInView;
 		
-		if(shouldLayoutIfNeeded)
-		{
+		if(shouldLayoutIfNeeded) {
 			[self.view layoutIfNeeded];
 		}
 		
@@ -55,8 +52,7 @@
 
 #pragma mark Methods
 
-- (void)updateScrollViewContentInsets
-{
+- (void)updateScrollViewContentInsets {
 	UIEdgeInsets newInsets = self.scrollView.contentInset;
 	newInsets.bottom = self.replyView.bounds.size.height + self.view.keyboardIntersectionInView;
 	
@@ -66,37 +62,30 @@
 	// maybe think about tweaking contentInset only when we need, as it would prevent 'over'scrolling being dismissed when dismissing interactively
 }
 
-- (NSUInteger)posInNavController
-{
+- (NSUInteger)posInNavController {
 	NSUInteger vcIndex = [self.navigationController.viewControllers indexOfObject:self];
 	return (vcIndex != NSNotFound) ? vcIndex : self.navigationController.viewControllers.count;
 }
 
-- (IBAction)pushViewController:(UIButton *)sender
-{
+- (IBAction)pushViewController:(UIButton *)sender {
 	JKViewController *vc = [[JKViewController alloc] init];
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)tapGestureRecognizerDidTap:(UITapGestureRecognizer *)sender
-{
+- (IBAction)tapGestureRecognizerDidTap:(UITapGestureRecognizer *)sender {
 	[self.view.window endEditing:NO];
 }
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
-{
-    if(self.scrollView.isScrolledToBottom)
-	{
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if(self.scrollView.isScrolledToBottom) {
 		self.scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
 	}
 	
 	return YES;
 }
 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    if(self.scrollView.isScrolledToBottom)
-	{
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if(self.scrollView.isScrolledToBottom) {
 		self.scrollView.shouldScrollToBottomOnNextKeyboardWillShow = YES;
 	}
 	

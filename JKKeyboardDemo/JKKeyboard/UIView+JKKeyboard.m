@@ -14,29 +14,23 @@
 
 #pragma mark Class
 
-+ (void)animateWithKeyboardNotification:(NSNotification *)notification animations:(void (^)(void))animations
-{
++ (void)animateWithKeyboardNotification:(NSNotification *)notification animations:(void (^)(void))animations {
     UIViewAnimationCurve curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
     [self animateWithKeyboardNotification:notification curve:curve animations:animations];
 }
 
-+ (void)animateWithKeyboardNotification:(NSNotification *)notification curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations
-{
++ (void)animateWithKeyboardNotification:(NSNotification *)notification curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations {
     CGFloat duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] floatValue];
     
-    if(duration <= 0.0)
-    {
+    if(duration <= 0.0) {
         duration = 0.15;
     }
     
     [self animateWithKeyboardDuration:duration curve:curve animations:animations];
 }
 
-+ (void)animateWithKeyboardDuration:(CGFloat)duration curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations
-{
-    if(animations)
-    {
++ (void)animateWithKeyboardDuration:(CGFloat)duration curve:(UIViewAnimationCurve)curve animations:(void (^)(void))animations {
+    if(animations) {
         [UIView beginAnimations:nil context:NULL];
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		[UIView setAnimationDuration:duration];
@@ -50,33 +44,27 @@
 
 #pragma mark Properties
 
-- (CGRect)keyboardFrameInView
-{
+- (CGRect)keyboardFrameInView {
 	JKKeyboardObserver *observer = [JKKeyboardObserver sharedObserver];
 	return [self convertRect:observer.keyboardFrameInRootView fromView:observer.rootView];
 }
 
-- (CGFloat)keyboardIntersectionInView
-{
+- (CGFloat)keyboardIntersectionInView {
 	CGFloat keyboardIntersectionInView = self.bounds.size.height - self.keyboardFrameInView.origin.y;
 	keyboardIntersectionInView = MAX(0.0, keyboardIntersectionInView);
 	
 	return keyboardIntersectionInView;
 }
 
-- (UIResponder *)firstResponder
-{
-    if(self.isFirstResponder)
-	{
+- (UIResponder *)firstResponder {
+    if(self.isFirstResponder) {
         return self;
     }
 	
-    for(UIView *subView in self.subviews)
-	{
+    for(UIView *subView in self.subviews) {
         UIResponder *firstResponder = subView.firstResponder;
 		
-        if(firstResponder)
-		{
+        if(firstResponder) {
             return firstResponder;
         }
     }
