@@ -164,7 +164,8 @@
         BOOL isActive = (self.view.window && (!self.navigationController || self == self.navigationController.visibleViewController));
 		shouldLayoutIfNeeded = shouldLayoutIfNeeded && !rotatesInterfaceOrientation && isActive;
 		
-		self.keyboardMoveBlock(keyboardFrameInRootView, keyboardIntersectionInRootView, keyboardVisibility, shouldLayoutIfNeeded);
+        __weak typeof(self) weakSelf = self;
+		self.keyboardMoveBlock(weakSelf, keyboardFrameInRootView, keyboardIntersectionInRootView, keyboardVisibility, shouldLayoutIfNeeded);
 	}
 }
 

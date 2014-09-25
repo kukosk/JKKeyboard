@@ -11,7 +11,7 @@
 
 @interface UIViewController (JKKeyboard)
 
-typedef void (^ JKKeyboardMoveBlock)(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded);
+typedef void (^ JKKeyboardMoveBlock)(__weak id self, CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded);
 
 @property (assign, nonatomic) BOOL isObserving;
 @property (readonly, assign, nonatomic) UIInterfaceOrientation currentOrientation;

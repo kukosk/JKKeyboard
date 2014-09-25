@@ -17,7 +17,7 @@ A singleton class which gets initiated automatically, and observes the keyboard 
 Implements the callback block as a property, so you just call...
 
 ``` objective-c
-self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
+self.keyboardMoveBlock = ^(__weak typeof(self) self, CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
 	// tweak everything you need
 	// look @ the demo project view controller implementation file for more
 	

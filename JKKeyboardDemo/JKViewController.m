@@ -29,12 +29,8 @@
 	NSUInteger posInNavController = [self posInNavController];
 	self.title = [NSString stringWithFormat:@"ViewController %ld", (long)posInNavController];
 	
-	__weak typeof(self) weakSelf = self;
-	
-	self.keyboardMoveBlock = ^(CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
-		typeof(self) self = weakSelf;
-		
-        self.replyViewBottomSpaceLayoutConstraint.constant = self.view.keyboardIntersectionInView;
+	self.keyboardMoveBlock = ^(__weak typeof(self) self, CGRect keyboardFrameInRootView, CGFloat keyboardIntersectionInRootView, CGFloat keyboardVisibility, BOOL shouldLayoutIfNeeded) {
+		self.replyViewBottomSpaceLayoutConstraint.constant = self.view.keyboardIntersectionInView;
 		
 		if(shouldLayoutIfNeeded) {
 			[self.view layoutIfNeeded];
