@@ -25,10 +25,6 @@ extern NSString *const JKKeyboardObserverKeyboardMoveNotification;
 @property (readonly, assign, nonatomic) CGRect keyboardFrameInRootView;
 
 
-+ (instancetype) alloc __attribute__((unavailable("Not available, singleton...")));
-+ (instancetype) new __attribute__((unavailable("Not available, singleton...")));
-- (instancetype) init __attribute__((unavailable("Not available, singleton...")));
-
 + (instancetype)sharedObserver;
 
 @end

@@ -47,10 +47,14 @@ static JKKeyboardObserver *sharedObserver;
 	 }];
 }
 
++ (id)allocWithZone:(NSZone *)zone {
+    return [self sharedObserver];
+}
+
 + (instancetype)sharedObserver {
 	@synchronized(self) {
 		if(!sharedObserver) {
-			sharedObserver = [[super alloc] initUniqueInstance];
+            sharedObserver = [[super allocWithZone:NULL] init];
 		}
 	}
 	
@@ -59,18 +63,22 @@ static JKKeyboardObserver *sharedObserver;
 
 #pragma mark Lifecycle
 
-- (id)initUniqueInstance {
-	if(self = [super init]) {
-		CGSize rootViewSize = self.rootView.bounds.size;
-		//as we don't know how the root view is rotated in early states of app initialization
-		CGFloat keyboardY = MAX(rootViewSize.width, rootViewSize.height);
-		_keyboardFrameInRootView = CGRectMake(0.0, keyboardY, 0.0, 0.0);
-		
-		self.didFrameHideKeyboard = YES;
-		self.isObserving = YES;
-	}
-	
-	return self;
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+- (id)init {
+    if(self = [super init]) {
+        CGSize rootViewSize = self.rootView.bounds.size;
+        //as we don't know how the root view is rotated in early states of app initialization
+        CGFloat keyboardY = MAX(rootViewSize.width, rootViewSize.height);
+        _keyboardFrameInRootView = CGRectMake(0.0, keyboardY, 0.0, 0.0);
+        
+        self.didFrameHideKeyboard = YES;
+        self.isObserving = YES;
+    }
+    
+    return self;
 }
 
 - (void)dealloc {
@@ -95,7 +103,7 @@ static JKKeyboardObserver *sharedObserver;
 }
 
 - (UIView *)rootView {
-	UIWindow *appWindow = [[[UIApplication sharedApplication] delegate] window];
+	UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
 	return (appWindow.subviews > 0) ? appWindow.subviews[0] : appWindow.rootViewController.view;
 }
 
