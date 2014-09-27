@@ -1,4 +1,5 @@
 ![Preview](/JKKeyboard.gif)
+(The glitch when hiding interactively is only happening in the simulator)
 
 # JKKeyboard
 
