@@ -10,6 +10,8 @@
 #import "UIView+JKKeyboard.h"
 
 
+static JKKeyboardObserver *sharedObserver;
+
 static int KVOJKKeyboardObserverKeyboardFrame;
 
 NSString *const JKKeyboardWillShowNotification = @"JKKeyboardWillShowNotification";
@@ -20,8 +22,6 @@ NSString *const JKKeyboardWillHideNotification = @"JKKeyboardWillHideNotificatio
 NSString *const JKKeyboardDidHideNotification = @"JKKeyboardDidHideNotification";
 
 NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserverKeyboardMoveNotification";
-
-static JKKeyboardObserver *sharedObserver;
 
 
 @interface JKKeyboardObserver ()
@@ -47,28 +47,38 @@ static JKKeyboardObserver *sharedObserver;
      }];
 }
 
-+ (id)allocWithZone:(NSZone *)zone {
-    return [self sharedObserver];
-}
-
 + (instancetype)sharedObserver {
-    @synchronized(self) {
-        if(!sharedObserver) {
-            sharedObserver = [[super allocWithZone:NULL] init];
-        }
+    if(!sharedObserver) {
+        sharedObserver = [[self alloc_] init_];
     }
     
     return sharedObserver;
 }
 
-#pragma mark Lifecycle
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return [self sharedObserver];
+}
 
-- (id)copyWithZone:(NSZone *)zone {
++ (id)alloc_ {
+    return [super allocWithZone:NULL];
+}
+
++ (id)copyWithZone:(struct _NSZone *)zone {
     return self;
 }
 
-- (id)init {
-    if(self = [super init]) {
+#pragma mark Lifecycle
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    return self;
+}
+
+- (instancetype)init {
+    return self;
+}
+
+- (instancetype)init_ {
+    if((self = sharedObserver = [super init])) {
         CGSize rootViewSize = self.rootView.bounds.size;
         //as we don't know how the root view is rotated in early states of app initialization
         CGFloat keyboardY = MAX(rootViewSize.width, rootViewSize.height);
