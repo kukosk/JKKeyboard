@@ -48,9 +48,10 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
 }
 
 + (instancetype)sharedObserver {
-    if(!sharedObserver) {
+    static dispatch_once_t pred;
+    dispatch_once(&pred, ^{
         sharedObserver = [[self alloc_] init_];
-    }
+    });
     
     return sharedObserver;
 }
