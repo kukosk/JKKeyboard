@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Jakub Kleň. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 extern NSString *const JKKeyboardWillShowNotification;
