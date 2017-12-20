@@ -102,8 +102,7 @@
 				92062EE618A7F2B5006EE11D /* JKViewController.xib */,
 				92176D9E18A68A7A0061594E /* Supporting Files */,
 			);
-			name = JKKeyboardDemo;
-			path = JKKeyboardObserverDemo;
+			path = JKKeyboardDemo;
 			sourceTree = "<group>";
 		};
 		92176D9E18A68A7A0061594E /* Supporting Files */ = {
