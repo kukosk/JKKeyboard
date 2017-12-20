@@ -80,9 +80,9 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
 
 - (instancetype)init_ {
     if((self = sharedObserver = [super init])) {
-        CGSize rootViewSize = self.rootView.bounds.size;
-        //as we don't know how the root view is rotated in early states of app initialization
-        CGFloat keyboardY = MAX(rootViewSize.width, rootViewSize.height);
+        CGSize windowSize = [UIScreen mainScreen].bounds.size;
+        //to make sure the keyboard frame is below rootView in early states of app initialization
+        CGFloat keyboardY = MAX(windowSize.width, windowSize.height);
         _keyboardFrameInRootView = CGRectMake(0.0, keyboardY, 0.0, 0.0);
         
         self.didFrameHideKeyboard = YES;
