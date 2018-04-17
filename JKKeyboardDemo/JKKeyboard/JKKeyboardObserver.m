@@ -198,7 +198,7 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
         keyboardFrame.origin.y = self.rootView.bounds.size.height;
     }
     
-    return keyboardFrame;
+    return [self endFrameFromFrame:keyboardFrame];
 }
 
 - (CGRect)endFrameFromNotification:(NSNotification *)notification
@@ -217,8 +217,16 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
     if(keyboardFrame.origin.y == INFINITY) {
         keyboardFrame.origin.y = self.rootView.bounds.size.height;
     }
-    
-    return keyboardFrame;
+
+    return [self endFrameFromFrame:keyboardFrame];
+}
+
+- (CGRect)endFrameFromFrame:(CGRect)frame {
+    if(frame.origin.y >= self.rootView.bounds.size.height) {
+        frame.origin.y = MAX(self.rootView.bounds.size.width, self.rootView.bounds.size.height);
+    }
+
+    return frame;
 }
 
 #pragma mark Observing
@@ -340,8 +348,9 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
                         
                         if(!self.didFrameHideKeyboard) {
                             CGRect newFrameInRootView = [self.keyboardActiveView.window convertRect:newFrame toView:self.rootView];
+                            newFrameInRootView = [self endFrameFromFrame:newFrameInRootView];
                             CGFloat maxYPos = self.rootView.bounds.size.height;
-                            
+
                             self.keyboardFrameInRootView = newFrameInRootView;
                             self.didFrameHideKeyboard = (newFrameInRootView.origin.y >= maxYPos);
                         }
