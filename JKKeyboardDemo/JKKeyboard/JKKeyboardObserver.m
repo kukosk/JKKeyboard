@@ -115,7 +115,25 @@ NSString *const JKKeyboardObserverKeyboardMoveNotification = @"JKKeyboardObserve
 
 - (UIView *)rootView {
     UIWindow *appWindow = [[UIApplication sharedApplication] keyWindow];
-    return (appWindow.subviews > 0) ? appWindow.subviews[0] : appWindow.rootViewController.view;
+
+    if(appWindow.subviews > 0) {
+        // picking first subview with max height
+        CGFloat maxHeight = 0.0;
+        for (UIView *view in appWindow.subviews) {
+            CGFloat height = view.bounds.size.height;
+            if(height > maxHeight) {
+                maxHeight = height;
+            }
+        }
+
+        for (UIView *view in appWindow.subviews) {
+            if(view.bounds.size.height == maxHeight) {
+                return view;
+            }
+        }
+    }
+
+    return appWindow.rootViewController.view;
 }
 
 - (void)setKeyboardFrameInRootView:(CGRect)keyboardFrameInRootView {
