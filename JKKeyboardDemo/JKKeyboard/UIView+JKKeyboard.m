@@ -56,6 +56,10 @@
     return keyboardIntersectionInView;
 }
 
+- (CGFloat)keyboardIntersectionFromMarginInView {
+    return MAX(0.0, self.keyboardIntersectionInView - self.layoutMargins.bottom);
+}
+
 - (UIResponder *)firstResponder {
     if(self.isFirstResponder) {
         return self;

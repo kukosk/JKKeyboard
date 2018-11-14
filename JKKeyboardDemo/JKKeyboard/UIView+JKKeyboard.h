@@ -12,7 +12,7 @@
 @interface UIView (JKKeyboard)
 
 @property (readonly, assign, nonatomic) CGRect keyboardFrameInView;
-@property (readonly, assign, nonatomic) CGFloat keyboardIntersectionInView;
+@property (readonly, assign, nonatomic) CGFloat keyboardIntersectionInView, keyboardIntersectionFromMarginInView;
 
 @property (readonly, strong, nonatomic) UIResponder *firstResponder;
 
