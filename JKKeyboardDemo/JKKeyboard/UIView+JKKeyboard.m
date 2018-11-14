@@ -60,6 +60,15 @@
     return MAX(0.0, self.keyboardIntersectionInView - self.layoutMargins.bottom);
 }
 
+- (CGFloat)keyboardIntersectionFromSafeAreaInView {
+    CGFloat bottomSafeAreaInset = 0.0;
+    if (@available(iOS 11.0, *)) {
+        bottomSafeAreaInset = self.safeAreaInsets.bottom;
+    }
+
+    return MAX(0.0, self.keyboardIntersectionInView - bottomSafeAreaInset);
+}
+
 - (UIResponder *)firstResponder {
     if(self.isFirstResponder) {
         return self;
