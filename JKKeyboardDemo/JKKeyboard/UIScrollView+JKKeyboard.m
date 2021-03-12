@@ -31,20 +31,28 @@
 
 #pragma mark Properties
 
+- (UIEdgeInsets)safeInset {
+    if (@available(iOS 11.0, *)) {
+        return self.adjustedContentInset;
+    } else {
+        return self.contentInset;
+    }
+}
+
 - (CGPoint)topOffset {
-    return CGPointMake(self.contentOffset.x, -self.contentInset.top);
+    return CGPointMake(self.contentOffset.x, -self.safeInset.top);
 }
 
 - (CGPoint)bottomOffset {
-    return CGPointMake(0.0, MAX(0.0, self.contentSize.height - self.bounds.size.height + self.contentInset.bottom));
+    return CGPointMake(0.0, MAX(0.0, self.contentSize.height - self.bounds.size.height + self.safeInset.bottom));
 }
 
 - (BOOL)isScrolledToTop {
-    return (self.contentOffset.y <= self.topOffset.y);
+    return (round(self.contentOffset.y) <= round(self.topOffset.y));
 }
 
 - (BOOL)isScrolledToBottom {
-    return (self.contentSize.height < self.bounds.size.height - self.contentInset.bottom || self.contentOffset.y >= self.bottomOffset.y);
+    return (round(self.contentSize.height) < round(self.bounds.size.height - self.safeInset.bottom) || round(self.contentOffset.y) >= round(self.bottomOffset.y));
 }
 
 - (BOOL)shouldScrollToBottomOnNextKeyboardWillShow {
